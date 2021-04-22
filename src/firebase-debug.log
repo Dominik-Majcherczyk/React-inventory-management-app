@@ -1,0 +1,25 @@
+[debug] [2021-04-22T10:31:40.302Z] ----------------------------------------------------------------------
+[debug] [2021-04-22T10:31:40.304Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Domma\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init functions
+[debug] [2021-04-22T10:31:40.304Z] CLI Version:   9.10.0
+[debug] [2021-04-22T10:31:40.304Z] Platform:      win32
+[debug] [2021-04-22T10:31:40.304Z] Node Version:  v14.16.0
+[debug] [2021-04-22T10:31:40.305Z] Time:          Thu Apr 22 2021 12:31:40 GMT+0200 (czas środkowoeuropejski letni)
+[debug] [2021-04-22T10:31:40.306Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-04-22T10:31:40.313Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-04-22T10:31:40.313Z] > authorizing via signed-in user (vasper117@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Domma\projects\inventory-menagement
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
