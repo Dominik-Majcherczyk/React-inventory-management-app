@@ -15,24 +15,26 @@ import { useAuth } from "../context/AuthContext";
 function App() {
   const { currentUser } = useAuth();
   return (
-    <Container
-      className="d-flex justify-content-center"
-      style={{ minHeight: "100vh" }}
-    >
-      <div className="w-100">
-        <Router>
-          {currentUser ? <Navbar /> : null}
-          <Switch>
-            <PrivateRoute exact path="/" component={Dashboard} />
-            <PrivateRoute path="/admin-panel" component={AdminPanel} />
-            <PrivateRoute path="/storage" component={Storage} />
-            <PrivateRoute path="/update-profile" component={UpdateProfile} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/login" component={Login} />
-            <Route path="/forgot-password" component={ForgotPassword} />
-          </Switch>
-        </Router>
-      </div>
+    <Container>
+      <Router>
+        {currentUser ? <Navbar /> : null}
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ minHeight: "100vh" }}
+        >
+          <div className="w-100" style={{ maxWidth: "60%" }}>
+            <Switch>
+              <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute path="/admin-panel" component={AdminPanel} />
+              <PrivateRoute path="/storage" component={Storage} />
+              <PrivateRoute path="/update-profile" component={UpdateProfile} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/login" component={Login} />
+              <Route path="/forgot-password" component={ForgotPassword} />
+            </Switch>
+          </div>
+        </div>
+      </Router>
     </Container>
   );
 }

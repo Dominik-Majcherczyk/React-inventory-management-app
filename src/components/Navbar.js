@@ -4,10 +4,28 @@ import { useAuth } from "../context/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 
 export default function Navbar() {
+  const [error, setError] = useState("");
+  const { logout } = useAuth();
+  const history = useHistory();
+
+  async function handleLogout() {
+    setError("");
+
+    try {
+      await logout();
+      history.push("/login");
+    } catch {
+      setError("Failed to log out");
+    }
+  }
   return (
     <>
       <Row className="justify-content-between">
-        <Col>SuperStorage</Col>
+        <Col>
+          <Nav.Link>
+            <Link to="/">SuperStorage</Link>
+          </Nav.Link>
+        </Col>
         <Col>
           <Nav
             className="justify-content-end"
@@ -31,7 +49,7 @@ export default function Navbar() {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link>
-                <Link to="/">Logout</Link>
+                <Link onClick={() => handleLogout()}>Logout</Link>
               </Nav.Link>
             </Nav.Item>
           </Nav>
