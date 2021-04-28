@@ -1,30 +1,36 @@
 import React from "react";
-import Signup from "./Signup";
-import Dashboard from "./Dashboard";
-import Login from "./Login";
-import ForgotPassword from "./ForgotPassword";
+import Signup from "./Auth/Signup";
+import Dashboard from "./Views/Dashboard";
+import Login from "./Auth/Login";
+import ForgotPassword from "./Auth/ForgotPassword";
 import PrivateRoute from "./PrivateRoute";
-import UpdateProfile from "./UpdateProfile";
+import UpdateProfile from "./Views/UpdateProfile";
+import Storage from "./Views/Storage/Storage";
+import AdminPanel from "./Views/AdminPanel";
+import Navbar from "./Navbar";
 import { Container } from "react-bootstrap";
-import { AuthProvider } from "../context/AuthContext";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 function App() {
+  const { currentUser } = useAuth();
   return (
     <Container
-      className="d-flex align-items-center justify-content-center"
+      className="d-flex justify-content-center"
       style={{ minHeight: "100vh" }}
     >
-      <div className="w-100" style={{ maxWidth: "400px" }}>
+      <div className="w-100">
         <Router>
-          <AuthProvider>
-            <Switch>
-              <PrivateRoute exact path="/" component={Dashboard} />
-              <PrivateRoute path="/update-profile" component={UpdateProfile} />
-              <Route path="/signup" component={Signup} />
-              <Route path="/login" component={Login} />
-              <Route path="/forgot-password" component={ForgotPassword} />
-            </Switch>
-          </AuthProvider>
+          {currentUser ? <Navbar /> : null}
+          <Switch>
+            <PrivateRoute exact path="/" component={Dashboard} />
+            <PrivateRoute path="/admin-panel" component={AdminPanel} />
+            <PrivateRoute path="/storage" component={Storage} />
+            <PrivateRoute path="/update-profile" component={UpdateProfile} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
+            <Route path="/forgot-password" component={ForgotPassword} />
+          </Switch>
         </Router>
       </div>
     </Container>
