@@ -9,33 +9,32 @@ import Storage from "./Views/Storage/Storage";
 import AdminPanel from "./Views/AdminPanel";
 import Navbar from "./Navbar";
 import { Container } from "react-bootstrap";
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 function App() {
   const { currentUser } = useAuth();
   return (
-    <Container>
+    <>
       <Router>
-        {currentUser ? <Navbar /> : null}
+        <Container>{currentUser ? <Navbar /> : null}</Container>
         <div
           className="d-flex justify-content-center align-items-center"
           style={{ minHeight: "100vh" }}
         >
-          <div className="w-100" style={{ maxWidth: "60%" }}>
-            <Switch>
-              <PrivateRoute exact path="/" component={Dashboard} />
-              <PrivateRoute path="/admin-panel" component={AdminPanel} />
-              <PrivateRoute path="/storage" component={Storage} />
+          <Switch>
+            <PrivateRoute exact path="/" component={Dashboard} />
+            <PrivateRoute path="/admin-panel" component={AdminPanel} />
+            <PrivateRoute path="/storage" component={Storage} />
+            <div className="w-100" style={{ maxWidth: "60%" }}>
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
-            </Switch>
-          </div>
+            </div>
+          </Switch>
         </div>
       </Router>
-    </Container>
+    </>
   );
 }
 
