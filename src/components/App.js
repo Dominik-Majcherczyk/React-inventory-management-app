@@ -18,13 +18,14 @@ function App() {
       <Router>
         <Container>
           {currentUser ? <Navbar /> : null}
-          <div
-            className="d-flex justify-content-center align-items-center"
-            style={{ minHeight: "100vh" }}
-          >
-            <Switch>
-              <PrivateRoute exact path="/" component={Dashboard} />
-              <PrivateRoute path="/storage" component={Storage} />
+
+          <Switch>
+            <PrivateRoute exact path="/" component={Dashboard} />
+            <PrivateRoute path="/storage" component={Storage} />
+            <div
+              className="d-flex justify-content-center align-items-center"
+              style={{ minHeight: "100vh" }}
+            >
               <div className="w-100" style={{ maxWidth: "60%" }}>
                 <PrivateRoute path="/admin-panel" component={AdminPanel} />
                 <PrivateRoute
@@ -35,8 +36,8 @@ function App() {
                 <Route path="/login" component={Login} />
                 <Route path="/forgot-password" component={ForgotPassword} />
               </div>
-            </Switch>
-          </div>
+            </div>
+          </Switch>
         </Container>
       </Router>
     </>
