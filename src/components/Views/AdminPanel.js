@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
-import { useAuth } from "../../context/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { Form, Button, Card } from "react-bootstrap";
+// import { useAuth } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 export default function AdminPanel() {
   const emailRef = useRef();
-  const passwordRef = useRef();
-  const { addAdmin } = useAuth();
-  const [error, setError] = useState("");
+  // const passwordRef = useRef();
+  // const { addAdmin } = useAuth();
+  // const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
+
   return (
     <>
       <Card>

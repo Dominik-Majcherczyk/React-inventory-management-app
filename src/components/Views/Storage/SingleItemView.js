@@ -1,15 +1,7 @@
 import React from "react";
 
-import {
-  Accordion,
-  Button,
-  Card,
-  Alert,
-  Container,
-  ListGroup,
-  Table,
-} from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Button, Card, Alert, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 export default function SingleItemView() {
   return (
     <>

@@ -1,17 +1,20 @@
-import React from "react";
-import {
-  Accordion,
-  Button,
-  Card,
-  Alert,
-  Container,
-  ListGroup,
-  Row,
-  Col,
-} from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import GroupOfItems from "./GroupOfItems";
+import { db } from "./../../../firebase";
 export default function Storage() {
+  const [categories, setCategories] = useState();
+
+  useEffect(() => {
+    db.collection("categories/6evTSxdfTnrwSOJlXZ0v/items")
+      .get()
+      .then((snapshot) => {
+        setCategories(snapshot.docs);
+        console.log(snapshot.docs);
+      });
+  }, []);
+
   return (
     <>
       <Row className="d-flex justify-content-center mb-5 mt-5">
@@ -25,11 +28,10 @@ export default function Storage() {
         </Col>
       </Row>
 
-      <GroupOfItems className="mb-5" />
-      <GroupOfItems />
-      <GroupOfItems />
-      <GroupOfItems />
-      <GroupOfItems />
+      {categories &&
+        categories.map((category) => {
+          return <GroupOfItems className="mb-5" data={category.data()} />;
+        })}
     </>
   );
 }
