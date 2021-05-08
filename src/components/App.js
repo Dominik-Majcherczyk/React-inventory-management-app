@@ -7,7 +7,7 @@ import PrivateRoute from "./PrivateRoute";
 import UpdateProfile from "./Views/UpdateProfile";
 import Storage from "./Views/Storage/Storage";
 import AdminPanel from "./Views/AdminPanel";
-import Navbar from "./Navbar";
+import NavbarMenu from "./Navbar";
 import { Container } from "react-bootstrap";
 import AddItem from "./Views/Storage/AddItem";
 import SingleItemView from "./Views/Storage/SingleItemView";
@@ -18,9 +18,8 @@ function App() {
   return (
     <>
       <Router>
+        {currentUser ? <NavbarMenu /> : null}
         <Container>
-          {currentUser ? <Navbar /> : null}
-
           <Switch>
             <PrivateRoute exact path="/" component={Dashboard} />
             <PrivateRoute path="/storage" component={Storage} />
