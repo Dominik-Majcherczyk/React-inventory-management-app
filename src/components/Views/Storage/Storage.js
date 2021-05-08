@@ -9,23 +9,27 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import GroupOfItems from "./GroupOfItems";
 export default function Storage() {
   return (
-    <Container>
-      <Row>
-        <Col className="justify-content-center">
-          <Button variant="danger">Delete epmty</Button>{" "}
+    <>
+      <Row className="d-flex justify-content-center mb-5 mt-5">
+        <Col md="auto" className="d-flex justify-content-center">
+          <Button variant="danger">Delete epmty</Button>
         </Col>
-        <Col className="justify-content-center">
-          <Button variant="primary">Add item</Button>{" "}
+        <Col md="auto" className="d-flex justify-content-center">
+          <Link to="/add-item">
+            <Button variant="primary">Add item</Button>
+          </Link>
         </Col>
       </Row>
+
+      <GroupOfItems className="mb-5" />
       <GroupOfItems />
       <GroupOfItems />
       <GroupOfItems />
       <GroupOfItems />
-      <GroupOfItems />
-    </Container>
+    </>
   );
 }

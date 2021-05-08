@@ -9,6 +9,7 @@ import Storage from "./Views/Storage/Storage";
 import AdminPanel from "./Views/AdminPanel";
 import Navbar from "./Navbar";
 import { Container } from "react-bootstrap";
+import AddItem from "./Views/Storage/AddItem";
 import SingleItemView from "./Views/Storage/SingleItemView";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -23,17 +24,19 @@ function App() {
           <Switch>
             <PrivateRoute exact path="/" component={Dashboard} />
             <PrivateRoute path="/storage" component={Storage} />
-            <PrivateRoute path="/single-item" component={SingleItemView} />
+
             <div
               className="d-flex justify-content-center align-items-center"
               style={{ minHeight: "100vh" }}
             >
               <div className="w-100" style={{ maxWidth: "60%" }}>
+                <PrivateRoute path="/add-item" component={AddItem} />
                 <PrivateRoute path="/admin-panel" component={AdminPanel} />
                 <PrivateRoute
                   path="/update-profile"
                   component={UpdateProfile}
                 />
+                <PrivateRoute path="/single-item" component={SingleItemView} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/login" component={Login} />
                 <Route path="/forgot-password" component={ForgotPassword} />

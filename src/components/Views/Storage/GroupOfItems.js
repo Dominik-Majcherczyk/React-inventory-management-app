@@ -12,7 +12,7 @@ import Item from "./Item";
 
 export default function GroupOfItems() {
   return (
-    <Accordion defaultActiveKey="1">
+    <Accordion defaultActiveKey="1" className="mb-2">
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0">
           legendary items
