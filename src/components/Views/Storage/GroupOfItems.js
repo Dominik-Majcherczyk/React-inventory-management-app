@@ -1,54 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Accordion, Card, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Item from "./Item";
+import { db } from "./../../../firebase";
 
-export default function GroupOfItems({ categoryId }) {
+export default function GroupOfItems({ categoryId, categoryData }) {
+  const [items, setItems] = useState();
+
+  useEffect(() => {
+    db.collection(`categories/${categoryId}/items`)
+      .get()
+      .then((snapshot) => {
+        setItems(snapshot.docs);
+      });
+  }, []);
+
   return (
     <Accordion defaultActiveKey="1" className="mb-2">
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0">
-          {categoryId}
+          {categoryData.name}
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
-            <Card>
-              <ListGroup variant="flush">
-                <Link to="/single-item">
-                  <Item />
-                </Link>
-                <Link to="/single-item">
-                  <Item />
-                </Link>
-                <Link to="/single-item">
-                  <Item />
-                </Link>
-                <Link to="/single-item">
-                  <Item />
-                </Link>
-                <Link to="/single-item">
-                  <Item />
-                </Link>
-                <Link to="/single-item">
-                  <Item />
-                </Link>
-                <Link to="/single-item">
-                  <Item />
-                </Link>
-                <Link to="/single-item">
-                  <Item />
-                </Link>
-                <Link to="/single-item">
-                  <Item />
-                </Link>
-                <Link to="/single-item">
-                  <Item />
-                </Link>
-                <Link to="/single-item">
-                  <Item />
-                </Link>
-              </ListGroup>
-            </Card>
+            {items &&
+              items.map((item) => {
+                return (
+                  <Link
+                    to="/single-item"
+                    class="text-decoration-none  text-reset"
+                  >
+                    <Item itemName={item.data().name} />
+                  </Link>
+                );
+              })}
           </Card.Body>
         </Accordion.Collapse>
       </Card>

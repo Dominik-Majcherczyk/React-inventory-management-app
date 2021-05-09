@@ -9,7 +9,6 @@ export default function Storage() {
 
   useEffect(() => {
     setTimeout(() => {
-      // db.collection("categories/6evTSxdfTnrwSOJlXZ0v/items")
       db.collection("categories")
         .get()
         .then((snapshot) => {
@@ -33,7 +32,13 @@ export default function Storage() {
             </Col>
           </Row>
           {categories.map((category) => {
-            return <GroupOfItems className="mb-5" categoryId={category.id} />;
+            return (
+              <GroupOfItems
+                className="mb-5"
+                categoryId={category.id}
+                categoryData={category.data()}
+              />
+            );
           })}
         </>
       ) : (

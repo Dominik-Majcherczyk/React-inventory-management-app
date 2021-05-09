@@ -1,5 +1,9 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
-export default function Item() {
-  return <ListGroup.Item>Microlith of Paradise</ListGroup.Item>;
+import { ListGroup, Button } from "react-bootstrap";
+export default function Item({ itemName }) {
+  return (
+    <Button className="w-100 mt-2" variant="light">
+      {itemName}
+    </Button>
+  );
 }
