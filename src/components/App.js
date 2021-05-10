@@ -22,7 +22,7 @@ function App() {
         <Container>
           <Switch>
             <PrivateRoute exact path="/" component={Dashboard} />
-            <PrivateRoute path="/storage" component={Storage} />
+            <PrivateRoute exact path="/storage" component={Storage} />
 
             <div
               className="d-flex justify-content-center align-items-center"
@@ -35,7 +35,10 @@ function App() {
                   path="/update-profile"
                   component={UpdateProfile}
                 />
-                <PrivateRoute path="/single-item" component={SingleItemView} />
+                <PrivateRoute
+                  path="/storage/:collectionId/:itemId"
+                  component={SingleItemView}
+                />
                 <Route path="/signup" component={Signup} />
                 <Route path="/login" component={Login} />
                 <Route path="/forgot-password" component={ForgotPassword} />
