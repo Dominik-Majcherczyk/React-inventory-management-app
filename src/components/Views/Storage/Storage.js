@@ -34,6 +34,7 @@ export default function Storage() {
           {categories.map((category) => {
             return (
               <GroupOfItems
+                key={category.id}
                 className="mb-5"
                 categoryId={category.id}
                 categoryData={category.data()}

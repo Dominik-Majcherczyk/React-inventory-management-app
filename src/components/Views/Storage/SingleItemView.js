@@ -37,21 +37,17 @@ export default function SingleItemView() {
                   <tr>
                     <td>1</td>
                     <td>Microlith of Paradise</td>
-                    <td className="text-center">
-                      <Button variant="primary">avialable</Button>{" "}
-                    </td>
+                    <td className="text-center">avialable</td>
                   </tr>
                   <tr>
                     <td>2</td>
                     <td>Microlith of Paradise</td>
-                    <td className="text-center">
-                      <Button variant="warning">passed away</Button>{" "}
-                    </td>
+                    <td className="text-center">passed away</td>
                   </tr>
                   <tr>
                     <td>3</td>
                     <td>Microlith of Paradise</td>
-                    <Button variant="danger">damaged</Button>{" "}
+                    <td className="text-center">damaged</td>
                   </tr>
                 </tbody>
               </Table>

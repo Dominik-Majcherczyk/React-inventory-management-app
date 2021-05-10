@@ -27,8 +27,9 @@ export default function GroupOfItems({ categoryId, categoryData }) {
               items.map((item) => {
                 return (
                   <Link
+                    key={item.id}
                     to={`/storage/${categoryId}/${item.id}`}
-                    class="text-decoration-none  text-reset"
+                    className="text-decoration-none  text-reset"
                   >
                     <Item itemName={item.data().name} />
                   </Link>

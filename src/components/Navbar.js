@@ -24,7 +24,7 @@ export default function Navenu() {
       <Container>
         <Navbar.Brand>
           <Link
-            class="text-decoration-none text-uppercase font-weight-normal text-reset"
+            className="text-decoration-none text-uppercase font-weight-normal text-reset"
             to="/"
           >
             SuperStorage{" "}
@@ -43,18 +43,21 @@ export default function Navenu() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link eventKey={1}>
-              <Link class="text-decoration-none text-reset " to="/admin-panel">
+              <Link
+                className="text-decoration-none text-reset "
+                to="/admin-panel"
+              >
                 Admin panel
               </Link>
             </Nav.Link>
             <Nav.Link eventKey={2}>
-              <Link class="text-decoration-none text-reset " to="/storage">
+              <Link className="text-decoration-none text-reset " to="/storage">
                 Storage
               </Link>
             </Nav.Link>
             <Nav.Link eventKey={3}>
               <Link
-                class="text-decoration-none text-reset "
+                className="text-decoration-none text-reset "
                 to="/update-profile"
               >
                 Update profile
@@ -63,7 +66,7 @@ export default function Navenu() {
           </Nav>
           <Nav>
             <Nav.Link
-              class="text-decoration-none text-reset "
+              className="text-decoration-none text-reset "
               onClick={() => handleLogout()}
             >
               {" "}
