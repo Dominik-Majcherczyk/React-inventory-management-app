@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { db } from "./../../../firebase";
 export default function AddItem() {
+  const [name, setName] = useState();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <>
       <Card>
@@ -21,7 +26,12 @@ export default function AddItem() {
             </Form.Group>
             <Form.Group controlId="itemName">
               <Form.Label>Item name:</Form.Label>
-              <Form.Control type="text" placeholder="Item name" />
+              <Form.Control
+                type="text"
+                placeholder="Item name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </Form.Group>
             <Form.Group controlId="price">
               <Form.Label>Price:</Form.Label>
@@ -46,7 +56,11 @@ export default function AddItem() {
               <Form.Label>Item Description:</Form.Label>
               <Form.Control as="textarea" rows={3} />
             </Form.Group>
-            <Button className="w-100" type="submit">
+            <Button
+              className="w-100"
+              type="submit"
+              onClick={(e) => handleSubmit(e)}
+            >
               Add item
             </Button>
           </Form>
