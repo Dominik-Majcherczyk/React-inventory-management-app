@@ -37,7 +37,6 @@ export default function Storage() {
                 key={category.id}
                 className="mb-5"
                 categoryId={category.id}
-                categoryData={category.data()}
               />
             );
           })}

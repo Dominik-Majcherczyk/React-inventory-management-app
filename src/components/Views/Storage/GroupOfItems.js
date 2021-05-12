@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Item from "./Item";
 import { db } from "./../../../firebase";
 
-export default function GroupOfItems({ categoryId, categoryData }) {
+export default function GroupOfItems({ categoryId }) {
   const [items, setItems] = useState();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function GroupOfItems({ categoryId, categoryData }) {
     <Accordion defaultActiveKey="1" className="mb-2">
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0">
-          {categoryData.name}
+          {categoryId}
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
