@@ -14,7 +14,7 @@ export default function Storage() {
         .then((snapshot) => {
           setCategories(snapshot.docs);
         });
-    }, 500);
+    }, 100);
   }, []);
 
   return (

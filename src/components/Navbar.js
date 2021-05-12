@@ -63,6 +63,11 @@ export default function Navenu() {
                 Update profile
               </Link>
             </Nav.Link>
+            <Nav.Link eventKey={4}>
+              <Link className="text-decoration-none text-reset " to="/add-item">
+                Add item
+              </Link>
+            </Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link

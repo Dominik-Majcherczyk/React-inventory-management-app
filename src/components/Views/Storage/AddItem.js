@@ -3,12 +3,27 @@ import { Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { db } from "./../../../firebase";
 export default function AddItem() {
-  const [tableName, setTableName] = useState();
+  const [tableName, setTableName] = useState("swords");
   const [name, setName] = useState();
   const [price, setPrice] = useState();
   const [quantity, setQuantity] = useState();
-  const [foundation, setFoundation] = useState();
+  const [foundation, setFoundation] = useState("Desired Gods");
   const [description, setDescription] = useState();
+  const [categories, setCategories] = useState();
+  const [foundations, setFoundations] = useState();
+  useEffect(() => {
+    db.collection("categories")
+      .get()
+      .then((snapshot) => {
+        setCategories(snapshot.docs);
+      });
+
+    db.collection("foundations")
+      .get()
+      .then((snapshot) => {
+        setFoundations(snapshot.docs);
+      });
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
     db.collection("categories")
@@ -28,6 +43,7 @@ export default function AddItem() {
         console.error("Error adding document: ", error);
       });
   };
+
   return (
     <>
       <Card>
@@ -42,11 +58,8 @@ export default function AddItem() {
                 value={tableName}
                 onChange={(e) => setTableName(e.target.value)}
               >
-                <option>swords</option>
-                <option>wands</option>
-                <option>shields</option>
-                <option>bows</option>
-                <option>add new table</option>
+                {categories &&
+                  categories.map((category) => <option>{category.id}</option>)}
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="itemName">
@@ -84,11 +97,10 @@ export default function AddItem() {
                 value={foundation}
                 onChange={(e) => setFoundation(e.target.value)}
               >
-                <option>Guardians of the World</option>
-                <option>Desired Gods</option>
-                <option>Wretched Dynasty</option>
-                <option>Whitecrawlers</option>
-                <option>Deceivers of the Faithful</option>
+                {foundations &&
+                  foundations.map((foundation) => (
+                    <option>{foundation.id}</option>
+                  ))}
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="itemDescription">
