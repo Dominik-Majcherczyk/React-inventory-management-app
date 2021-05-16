@@ -7,5 +7,6 @@ export default function Dashboard() {
   <div>
     <Card></Card>
     <Card></Card>
+    <Card></Card>
   </div>;
 }
