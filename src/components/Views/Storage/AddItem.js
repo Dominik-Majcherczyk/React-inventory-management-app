@@ -74,7 +74,7 @@ export default function AddItem() {
             <Form.Group controlId="price">
               <Form.Label>Price:</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
                 placeholder="0.00"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
@@ -84,7 +84,7 @@ export default function AddItem() {
             <Form.Group controlId="quantity">
               <Form.Label>Quantity:</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
                 placeholder="0"
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}

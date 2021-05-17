@@ -6,6 +6,7 @@ import { db } from "./../../../firebase";
 export default function SingleItemView() {
   const [item, setItem] = useState();
   const { itemId, collectionId } = useParams();
+  let rows = [];
   useEffect(() => {
     db.collection("categories")
       .doc(collectionId)
@@ -17,6 +18,13 @@ export default function SingleItemView() {
       });
   }, []);
 
+  if (item) {
+    for (let i = 0; i < item.quantity; i++) {
+      rows.push(i);
+    }
+  }
+
+  console.log(rows);
   return (
     <>
       {item && (
@@ -33,23 +41,19 @@ export default function SingleItemView() {
                     <th>status</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Microlith of Paradise</td>
-                    <td className="text-center">avialable</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Microlith of Paradise</td>
-                    <td className="text-center">passed away</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Microlith of Paradise</td>
-                    <td className="text-center">damaged</td>
-                  </tr>
-                </tbody>
+                {item && (
+                  <tbody>
+                    {rows.map((number) => {
+                      return (
+                        <tr>
+                          <td>{number}</td>
+                          <td>{item.name}</td>
+                          <td className="text-center">avialable</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                )}
               </Table>
             </Card.Body>
             <div className="w-100 text-center">
