@@ -6,7 +6,7 @@ export default function AddItem() {
   const [tableName, setTableName] = useState("swords");
   const [name, setName] = useState();
   const [price, setPrice] = useState();
-  const [quantity, setQuantity] = useState();
+  const [quantity, setQuantity] = useState([]);
   const [foundation, setFoundation] = useState("Desired Gods");
   const [description, setDescription] = useState();
   const [categories, setCategories] = useState();
@@ -24,20 +24,35 @@ export default function AddItem() {
         setFoundations(snapshot.docs);
       });
   }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     db.collection("categories")
       .doc(tableName)
-      .collection("items")
-      .add({
-        name,
-        price,
-        quantity,
-        foundation,
-        description,
-      })
-      .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
+      .set(
+        {
+          [name]: quantity.length,
+        },
+        { merge: true }
+      )
+      .then(() => {
+        quantity.forEach(() => {
+          db.collection("categories")
+            .doc(tableName)
+            .collection(name)
+            .add({
+              name,
+              price,
+              foundation,
+              description,
+            })
+            .then(() => {
+              quantity.map((quant) => {});
+            })
+            .catch((error) => {
+              console.error("Error adding document: ", error);
+            });
+        });
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
@@ -85,9 +100,10 @@ export default function AddItem() {
               <Form.Label>Quantity:</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="0"
                 value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
+                onChange={(e) =>
+                  setQuantity(new Array(parseInt(e.target.value)))
+                }
               />
             </Form.Group>
             <Form.Group controlId="foundation">
