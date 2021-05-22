@@ -10,7 +10,7 @@ import AdminPanel from "./Views/AdminPanel";
 import NavbarMenu from "./Navbar";
 import { Container } from "react-bootstrap";
 import AddItem from "./Views/Storage/AddItem";
-import SingleItemView from "./Views/Storage/SingleItemView";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 function App() {
@@ -35,10 +35,7 @@ function App() {
                   path="/update-profile"
                   component={UpdateProfile}
                 />
-                <PrivateRoute
-                  path="/storage/:collectionId/:itemId"
-                  component={SingleItemView}
-                />
+
                 <Route path="/signup" component={Signup} />
                 <Route path="/login" component={Login} />
                 <Route path="/forgot-password" component={ForgotPassword} />
