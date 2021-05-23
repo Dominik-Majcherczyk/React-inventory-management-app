@@ -6,6 +6,8 @@ import GroupOfItems from "./GroupOfItems";
 import { db } from "./../../../firebase";
 export default function Storage() {
   const [categories, setCategories] = useState();
+  const [items, setItems] = useState();
+  const [addingSuccess, setAddingSuccess] = useState();
 
   useEffect(() => {
     setTimeout(() => {

@@ -8,7 +8,7 @@ export default function GroupOfItems({ categoryId }) {
   const [items, setItems] = useState();
 
   useEffect(() => {
-    db.collection(`categories/${categoryId}/items`)
+    db.collection(`categories/${categoryId}/${categoryId}`)
       .get()
       .then((snapshot) => {
         setItems(snapshot.docs);
@@ -31,7 +31,7 @@ export default function GroupOfItems({ categoryId }) {
                     to={`/storage/${categoryId}/${item.id}`}
                     className="text-decoration-none  text-reset"
                   >
-                    <Item itemName={item.data().name} />
+                    <Item itemData={item.data()} />
                   </Link>
                 );
               })}

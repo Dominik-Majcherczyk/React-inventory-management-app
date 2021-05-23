@@ -1,8 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Button, Card, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Card, Form, Alert } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
 import { db } from "./../../../firebase";
+
 export default function AddItem() {
+  const history = useHistory();
+  const [error, setError] = useState(undefined);
   const [tableName, setTableName] = useState("swords");
   const [name, setName] = useState();
   const [price, setPrice] = useState();
@@ -16,7 +19,6 @@ export default function AddItem() {
       .get()
       .then((snapshot) => {
         setCategories(snapshot.docs);
-
         setTableName(snapshot.docs[0].id);
       });
 
@@ -30,22 +32,28 @@ export default function AddItem() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    db.collection("categories")
-      .doc(tableName)
-      .collection(tableName)
-      .add({
-        name,
-        price,
-        description,
-        quantity,
-        foundation,
-      })
-      .then(() => {
-        console.log("item added");
-      })
-      .catch((error) => {
-        console.error("Error adding document: ", error);
-      });
+    try {
+      db.collection("categories")
+        .doc(tableName)
+        .collection(tableName)
+        .add({
+          name,
+          price,
+          description,
+          quantity,
+          foundation,
+        })
+        .then(() => {
+          console.log("item added");
+          history.push("/storage");
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+          setError(error);
+        });
+    } catch {
+      setError("failed to add file");
+    }
   };
 
   return (
@@ -53,7 +61,7 @@ export default function AddItem() {
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Add item</h2>
-
+          {error && <Alert variant="danger">{error}</Alert>}
           <Form>
             <Form.Group controlId="exampleForm.ControlSelect1">
               <Form.Label>Table name:</Form.Label>
