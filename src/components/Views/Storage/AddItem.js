@@ -6,7 +6,7 @@ export default function AddItem() {
   const [tableName, setTableName] = useState("swords");
   const [name, setName] = useState();
   const [price, setPrice] = useState();
-  const [quantity, setQuantity] = useState([]);
+  const [quantity, setQuantity] = useState();
   const [foundation, setFoundation] = useState("Desired Gods");
   const [description, setDescription] = useState();
   const [categories, setCategories] = useState();
@@ -16,12 +16,15 @@ export default function AddItem() {
       .get()
       .then((snapshot) => {
         setCategories(snapshot.docs);
+
+        setTableName(snapshot.docs[0].id);
       });
 
     db.collection("foundations")
       .get()
       .then((snapshot) => {
         setFoundations(snapshot.docs);
+        setFoundation(snapshot.docs[0].id);
       });
   }, []);
 
@@ -29,30 +32,16 @@ export default function AddItem() {
     e.preventDefault();
     db.collection("categories")
       .doc(tableName)
-      .set(
-        {
-          [name]: quantity.length,
-        },
-        { merge: true }
-      )
+      .collection(tableName)
+      .add({
+        name,
+        price,
+        description,
+        quantity,
+        foundation,
+      })
       .then(() => {
-        quantity.forEach(() => {
-          db.collection("categories")
-            .doc(tableName)
-            .collection(name)
-            .add({
-              name,
-              price,
-              foundation,
-              description,
-            })
-            .then(() => {
-              quantity.map((quant) => {});
-            })
-            .catch((error) => {
-              console.error("Error adding document: ", error);
-            });
-        });
+        console.log("item added");
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
@@ -101,9 +90,7 @@ export default function AddItem() {
               <Form.Control
                 type="number"
                 value={quantity}
-                onChange={(e) =>
-                  setQuantity(new Array(parseInt(e.target.value)))
-                }
+                onChange={(e) => setQuantity(e.target.value)}
               />
             </Form.Group>
             <Form.Group controlId="foundation">
