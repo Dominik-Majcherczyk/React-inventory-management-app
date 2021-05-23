@@ -8,6 +8,7 @@ import UpdateProfile from "./Views/UpdateProfile";
 import Storage from "./Views/Storage/Storage";
 import AdminPanel from "./Views/AdminPanel";
 import NavbarMenu from "./Navbar";
+import SingleItem from "./Views/Storage/SingleItem";
 import { Container } from "react-bootstrap";
 import AddItem from "./Views/Storage/AddItem";
 
@@ -31,6 +32,10 @@ function App() {
               <div className="w-100" style={{ maxWidth: "60%" }}>
                 <PrivateRoute path="/add-item" component={AddItem} />
                 <PrivateRoute path="/admin-panel" component={AdminPanel} />
+                <PrivateRoute
+                  path="/storage/:collectionId/:itemId"
+                  component={SingleItem}
+                />
                 <PrivateRoute
                   path="/update-profile"
                   component={UpdateProfile}
