@@ -6,11 +6,11 @@ import { db } from "./../../../firebase";
 export default function AddItem() {
   const history = useHistory();
   const [error, setError] = useState(undefined);
-  const [tableName, setTableName] = useState("swords");
+  const [tableName, setTableName] = useState();
   const [name, setName] = useState();
   const [price, setPrice] = useState();
   const [quantity, setQuantity] = useState();
-  const [foundation, setFoundation] = useState("Desired Gods");
+  const [foundation, setFoundation] = useState();
   const [description, setDescription] = useState();
   const [categories, setCategories] = useState();
   const [foundations, setFoundations] = useState();
@@ -42,6 +42,7 @@ export default function AddItem() {
           description,
           quantity,
           foundation,
+          status: "available",
         })
         .then(() => {
           console.log("item added");
@@ -86,8 +87,8 @@ export default function AddItem() {
             <Form.Group controlId="price">
               <Form.Label>Price:</Form.Label>
               <Form.Control
-                type="number"
-                placeholder="0.00"
+                type="text"
+                placeholder="0"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
@@ -96,7 +97,8 @@ export default function AddItem() {
             <Form.Group controlId="quantity">
               <Form.Label>Quantity:</Form.Label>
               <Form.Control
-                type="number"
+                type="text"
+                placeholder="0"
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
               />
@@ -118,6 +120,7 @@ export default function AddItem() {
               <Form.Label>Item Description:</Form.Label>
               <Form.Control
                 as="textarea"
+                placeholder="description..."
                 rows={3}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
