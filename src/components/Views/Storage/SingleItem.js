@@ -29,7 +29,22 @@ export default function SingleItem() {
     }
   }, [item]);
 
-  const changeStatusHandler = () => {};
+  useEffect(() => {
+    db.collection(`categories/${collectionId}/${collectionId}`)
+      .doc(itemId)
+      .update({ status: status })
+      .then(() => console.log("git gut"));
+  }, [status]);
+
+  const changeStatusHandler = () => {
+    if (status == "primary") {
+      setStatus("warning");
+    } else if (item.status == "warning") {
+      setStatus("danger");
+    } else if (item.status == "danger") {
+      setStatus("primary");
+    }
+  };
 
   return (
     <>
@@ -54,7 +69,7 @@ export default function SingleItem() {
                   <Button
                     className="w-100"
                     variant={status}
-                    onClick={changeStatusHandler}
+                    onClick={() => changeStatusHandler()}
                   >
                     {item.status}
                   </Button>{" "}
