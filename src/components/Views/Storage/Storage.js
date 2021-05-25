@@ -25,9 +25,6 @@ export default function Storage() {
         <>
           <Row className="d-flex justify-content-center mb-5 mt-5">
             <Col md="auto" className="d-flex justify-content-center">
-              <Button variant="danger">Delete epmty</Button>
-            </Col>
-            <Col md="auto" className="d-flex justify-content-center">
               <Link to="/add-item">
                 <Button variant="primary">Add item</Button>
               </Link>
