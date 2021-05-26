@@ -22,7 +22,7 @@ function App() {
         {currentUser ? <NavbarMenu /> : null}
         <Container>
           <Switch>
-            <PrivateRoute exact path="/" component={Dashboard} />
+            <PrivateRoute exact path="/" component={Storage} />
             <PrivateRoute exact path="/storage" component={Storage} />
 
             <div

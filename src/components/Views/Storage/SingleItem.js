@@ -77,7 +77,7 @@ export default function SingleItem() {
               </ListGroup>
             </Card.Body>
             <div className="w-100 text-center">
-              <Alert variant="light">last changed by: Jan 08.09.2021</Alert>
+              <Alert variant="light">last changed by: Dominik 26.05.2021</Alert>
             </div>
           </Card>
           <div className="w-100 text-center mt-2">
