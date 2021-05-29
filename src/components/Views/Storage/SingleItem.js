@@ -7,6 +7,7 @@ export default function SingleItem() {
   const [item, setItem] = useState();
   const { itemId, collectionId } = useParams();
   const [status, setStatus] = useState("primary");
+  const [dbstatus, setDbstatus] = useState("primary");
 
   useEffect(() => {
     db.collection(`categories/${collectionId}/${collectionId}`)
@@ -32,17 +33,20 @@ export default function SingleItem() {
   useEffect(() => {
     db.collection(`categories/${collectionId}/${collectionId}`)
       .doc(itemId)
-      .update({ status: status })
+      .update({ status: dbstatus })
       .then(() => console.log("git gut"));
   }, [status]);
 
   const changeStatusHandler = () => {
     if (status == "primary") {
       setStatus("warning");
+      setDbstatus("borrowed");
     } else if (item.status == "warning") {
       setStatus("danger");
+      setDbstatus("damaged");
     } else if (item.status == "danger") {
       setStatus("primary");
+      setDbstatus("available");
     }
   };
 
